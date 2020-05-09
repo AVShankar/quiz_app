@@ -16,7 +16,6 @@ let userSchema = new Schema({
 });
 
 /* Creating a model - compile model form Schema
-# users = collection name
 #userSchema = schema going to use for creating model
 */ 
 module.exports = mongoose.model('users',userSchema);
