@@ -9,7 +9,6 @@ class User extends React.Component {
   }
 
   showQuiz = (e) => {
-    console.log(e.target.id);
     localStorage.setItem("quizID", e.target.id);
     this.setState({
       quizID: e.target.id,

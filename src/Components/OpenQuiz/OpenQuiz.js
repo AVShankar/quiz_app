@@ -43,11 +43,11 @@ class OpenQuiz extends React.Component {
           </div>
         </div>
         <div>
-          {quizData !== []
+          {quizData !== [] && localStorage.getItem("quizID") !== null
             ? quizData.map((e) => {
                 e.incorrect_answers.push(e.correct_answer);
                 return (
-                  <div className="p-2">
+                  <div key={e.correct_answer} className="p-2">
                     <div className="row">
                       <h5>{e.question}</h5>
                     </div>
