@@ -10,7 +10,7 @@ mongoose.Promise = global.Promise;
 
 const app = express();
 const mongoDB =
-  "mongodb+srv://Shankar:ThemasS.@cluster0-omzkl.mongodb.net/test?retryWrites=true&w=majority";
+  "";
 
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
