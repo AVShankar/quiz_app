@@ -1,7 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const User = require("./userSchema");
-// const Signup  = require('./models/signup-model')
+const Quiz = require("./quizSchema");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const parser = require("body-parser");
@@ -10,7 +10,7 @@ mongoose.Promise = global.Promise;
 
 const app = express();
 const mongoDB =
-  "";
+  "mongodb+srv://Shankar:ThemasS.@cluster0-omzkl.mongodb.net/test?retryWrites=true&w=majority";
 
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
@@ -70,6 +70,55 @@ app.post("/login", (req, res) => {
     });
   });
 });
+
+app.post("/addQuiz", (req, res) => {
+  let result = req.body;
+
+  let data = new Quiz(result);
+
+  data
+    .save()
+    .then((success) => {
+      return res.status(201).json({
+        message: "New quiz data updated successfully!",
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      return res.status(400).json({
+        message: "New entry failed to upload",
+      });
+    });
+});
+
+app.get("/activeQuiz", (req, res) => {
+  Quiz.find()
+    .then(function (data) {
+      res.json(data);
+    })
+    .catch(function (err) {
+      res.status(500).json({
+        message: "error",
+      });
+    });
+});
+
+app.delete("/deleteQuiz", (req, res) => {
+    Quiz.findByIdAndDelete(req.body.id).then(function(data) {
+        res.status(201).json("Deleted");
+      })
+      .catch(function(err) {
+        res.send(err);
+      });
+})
+
+app.post("/findQuiz", (req, res) => {
+    Quiz.findById(req.body.id).then(function(data) {
+        res.status(201).json(data)
+    }).catch(function(err) {
+        res.send(err)
+    })
+})
 
 app.listen(port, hostname, () => {
   console.log(`Server running at ${port}`);

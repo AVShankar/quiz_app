@@ -1,28 +1,37 @@
 import React from "react";
+import UserHome from "../UserHome/UserHome";
+import OpenQuiz from "../OpenQuiz/OpenQuiz";
 
 class User extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { quizID: "" };
+  }
+
+  showQuiz = (e) => {
+    console.log(e.target.id);
+    localStorage.setItem("quizID", e.target.id);
+    this.setState({
+      quizID: e.target.id,
+    });
+  };
+
+  exitQuiz = () => {
+    localStorage.setItem("quizID", "");
+    this.setState({
+      quizID: "",
+    });
+  };
+
   render() {
+    const { quizID } = this.state;
     return (
       <div className="container p-4">
-        <div>
-          <h4>
-            Hello, <span>{localStorage.getItem("name")}</span>
-          </h4>
-          <p className="text-muted">Email: {localStorage.getItem("email")}</p>
-          <p className="text-muted">School: {localStorage.getItem("school")}</p>
-        </div>
-        <h5>Active Quiz: </h5>
-        <div className="d-flex">
-          <div className="card border-dark mb-3 text-center">
-            <div className="card-body text-dark">
-              <h5 className="card-title">Quiz topic</h5>
-              <p className="card-text">
-                  Quiz based on topic_name
-              </p>
-              <input type="button" value="Start Quiz" className="btn btn-primary" />
-            </div>
-          </div>
-        </div>
+        {localStorage.getItem("quizID") !== "" ? (
+          <OpenQuiz exitQuiz={this.exitQuiz} quizID={quizID} />
+        ) : (
+          <UserHome showQuiz={this.showQuiz} />
+        )}
       </div>
     );
   }
