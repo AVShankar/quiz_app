@@ -1,10 +1,11 @@
 import React from "react";
+import "./OpenQuiz.css";
 import $ from "jquery";
 
 class OpenQuiz extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { quizData: [], category: "", level: "" };
+    this.state = { quizData: [], category: "", level: "", result: "" };
   }
 
   componentDidMount() {
@@ -28,13 +29,39 @@ class OpenQuiz extends React.Component {
     });
   }
 
-  recordAnswer(e) 
-  {
-    console.log(e)
+  recordAnswer(questObj, e) {
+    let tragetValue = e.target.value;
+    let correctDom = e.target.value + "correct";
+    let incorrectDom = e.target.value + "incorrect";
+    if (e.target.value === questObj.correct_answer) {
+      document.getElementById(correctDom).classList.remove("inactive");
+      document.getElementById(correctDom).classList.add("active");
+    } else {
+      document.getElementById(incorrectDom).classList.remove("inactive");
+    }
+    for (let i = 0; i < questObj.incorrect_answers.length; i++) {
+      if (questObj.incorrect_answers[i] !== tragetValue) {
+        document.getElementById(questObj.incorrect_answers[i]).disabled = true;
+      }
+    }
+  }
+
+  submitQuiz = () => {
+    let results = document.getElementsByClassName("active").length;
+    document.getElementById('result').classList.remove("inactive");
+    document.getElementById('submit').classList.add("disabled");
+    console.log(results)
+    this.setState({
+      result: results
+    })
+    setTimeout(() => {
+      this.props.exitQuiz();
+      clearTimeout();
+    }, 5000)
   }
 
   render() {
-    const { quizData, category, level } = this.state;
+    const { quizData, category, level, result } = this.state;
     return (
       <div>
         <div className="d-flex justify-content-between">
@@ -66,9 +93,22 @@ class OpenQuiz extends React.Component {
                               value={opt}
                               id={opt}
                               name="Options"
-                              onChange={this.recordAnswer.bind(this, e)}
+                              disabled={false}
+                              onChange={this.recordAnswer.bind(this.id, e)}
                             />
-                            <p>{opt}</p>
+                            <span>{opt}</span>
+                            <h6
+                              className="text-success inactive"
+                              id={opt + "correct"}
+                            >
+                              Correct Answer
+                            </h6>
+                            <h6
+                              className="text-danger inactive"
+                              id={opt + "incorrect"}
+                            >
+                              Incorrect Answer
+                            </h6>
                           </div>
                         );
                       })}
@@ -78,6 +118,10 @@ class OpenQuiz extends React.Component {
               })
             : null}
         </div>
+        <div className="result inactive" id="result">
+          <h3>Your quiz score is: {result}</h3>
+          <p>You'll be redirected to home in 5 seconds</p>
+        </div>
         <div className="d-flex justify-content-between p-5">
           <input
             type="button"
@@ -85,7 +129,13 @@ class OpenQuiz extends React.Component {
             className="btn btn-danger"
             onClick={this.props.exitQuiz}
           />
-          <input type="button" value="Submit" className="btn btn-success" />
+          <input
+            type="button"
+            value="Submit"
+            id="submit"
+            className="btn btn-success"
+            onClick={this.submitQuiz}
+          />
         </div>
       </div>
     );
