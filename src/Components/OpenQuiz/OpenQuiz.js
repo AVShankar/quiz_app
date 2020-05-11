@@ -1,4 +1,5 @@
 import React from "react";
+import "./OpenQuiz.css";
 import $ from "jquery";
 
 class OpenQuiz extends React.Component {
@@ -28,9 +29,17 @@ class OpenQuiz extends React.Component {
     });
   }
 
-  recordAnswer(e) 
+  recordAnswer(questObj, e) 
   {
-    console.log(e)
+    let correctDom = e.target.value + 'correct';
+    let incorrectDom = e.target.value + 'incorrect';
+    if(e.target.value === questObj.correct_answer)
+    {
+      document.getElementById(correctDom).classList.remove('inactive')
+    }
+    else{
+      document.getElementById(incorrectDom).classList.remove('inactive')
+    }
   }
 
   render() {
@@ -66,9 +75,11 @@ class OpenQuiz extends React.Component {
                               value={opt}
                               id={opt}
                               name="Options"
-                              onChange={this.recordAnswer.bind(this, e)}
+                              onChange={this.recordAnswer.bind(this.id, e)}
                             />
-                            <p>{opt}</p>
+                            <span>{opt}</span>
+                            <h6 className="text-success inactive" id={opt+'correct'}>Correct Answer</h6>
+                            <h6 className="text-danger inactive" id={opt+'incorrect'}>Incorrect Answer</h6>
                           </div>
                         );
                       })}
