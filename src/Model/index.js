@@ -9,7 +9,8 @@ const parser = require("body-parser");
 mongoose.Promise = global.Promise;
 
 const app = express();
-const mongoDB ="";
+const mongoDB =
+  "";
 
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));

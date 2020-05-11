@@ -28,6 +28,11 @@ class OpenQuiz extends React.Component {
     });
   }
 
+  recordAnswer(e) 
+  {
+    console.log(e)
+  }
+
   render() {
     const { quizData, category, level } = this.state;
     return (
@@ -61,7 +66,9 @@ class OpenQuiz extends React.Component {
                               value={opt}
                               id={opt}
                               name="Options"
+                              onChange={this.recordAnswer.bind(this, e)}
                             />
+                            <p>{opt}</p>
                           </div>
                         );
                       })}
