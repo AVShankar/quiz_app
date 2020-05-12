@@ -26,7 +26,7 @@ class User extends React.Component {
     const { quizID } = this.state;
     return (
       <div className="container p-4">
-        {localStorage.getItem("quizID") !== "" ? (
+        {localStorage.getItem("quizID") !== null ? (
           <OpenQuiz exitQuiz={this.exitQuiz} quizID={quizID} />
         ) : (
           <UserHome showQuiz={this.showQuiz} />
