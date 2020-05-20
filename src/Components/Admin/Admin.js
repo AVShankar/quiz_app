@@ -35,10 +35,10 @@ class Admin extends React.Component {
 
   addNewQuiz = (e) => {
     e.preventDefault();
-    let count = $("#tot_quest").val();
-    let categorySelected = $("#category").val();
-    let difficultySelected = $("#difficulty").val();
-    let type = $("#type").val();
+    let count = this.tot_quest.value;
+    let categorySelected = this.category.value;
+    let difficultySelected = this.difficulty.value;
+    let type = this.type.value;
 
     $.ajax({
       url: `https://opentdb.com/api.php?amount=${count}&category=${categorySelected}&difficulty=${difficultySelected}&type=${type}`,
@@ -147,7 +147,7 @@ class Admin extends React.Component {
                     <div className="form-group">
                       <label>
                         <p className="label-txt">Tot questions :</p>
-                        <select className="select-input" id="tot_quest">
+                        <select className="select-input" id="tot_quest" ref={e => this.tot_quest = e}>
                           <option value="10">10</option>
                         </select>
                         <div className="line-box">
@@ -160,7 +160,7 @@ class Admin extends React.Component {
                     <div className="form-group">
                       <label>
                         <p className="label-txt">Category :</p>
-                        <select className="select-input" id="category">
+                        <select className="select-input" id="category" ref={e => this.category = e}>
                           <option value="9">General Knowledge</option>
                           <option value="10">Entertainment: Books</option>
                           <option value="11">Entertainment: Film</option>
@@ -200,7 +200,7 @@ class Admin extends React.Component {
                     <div className="form-group">
                       <label>
                         <p className="label-txt">Difficulty :</p>
-                        <select className="select-input" id="difficulty">
+                        <select className="select-input" id="difficulty" ref={e => this.difficulty = e}>
                           <option value="easy">Easy</option>
                           <option value="medium">Medium</option>
                           <option value="hard">Hard</option>
@@ -215,7 +215,7 @@ class Admin extends React.Component {
                     <div className="form-group">
                       <label>
                         <p className="label-txt">Type :</p>
-                        <select className="select-input" id="type">
+                        <select className="select-input" id="type" ref={e => this.type =e}>
                           <option value="multiple">Multiple Choice</option>
                         </select>
                         <div className="line-box">

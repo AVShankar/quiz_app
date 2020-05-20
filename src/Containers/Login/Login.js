@@ -26,53 +26,59 @@ class Login extends React.Component {
   }
 
   handleSignUp = (e) => {
-      e.preventDefault();
-      let userDetails = {
-        user_name: $("#newUserName").val(),
-        email: $("#newUserEmailAddress").val(),
-        password: $("#newUserPassword").val(),
-        school_name: "Demo_School",
-        prev_quiz: [],
-        admin: 0
-      }
-      $.ajax({
-          url: "http://127.0.0.1:5000/signup",
-          method: "POST",
-          data: userDetails
-      }).then(res => {
-          this.props.updateUserData(res);
-      }).catch(function(err){
-          console.log('Something went wrong! Please try again');
-          console.error(err);
+    e.preventDefault();
+    let userDetails = {
+      user_name: this.newUserName.value,
+      email: this.newUserEmailAddress.value,
+      password: this.newUserPassword.value,
+      school_name: "Demo_School",
+      prev_quiz: [],
+      admin: 0,
+    };
+
+    $.ajax({
+      url: "http://127.0.0.1:5000/signup",
+      method: "POST",
+      data: userDetails,
+    })
+      .then((res) => {
+        this.props.updateUserData(res);
       })
-  }
+      .catch(function (err) {
+        console.log("Something went wrong! Please try again");
+        console.error(err);
+      });
+  };
 
   handleLogin = (e) => {
-      e.preventDefault();
-      let loginDetails = {
-          email: $("#userEmailAddress").val(),
-          password: $("#userPassword").val()
-      }
+    e.preventDefault();
+    let loginDetails = {
+      email: this.userEmailAddress.value,
+      password: this.userPassword.value,
+    };
 
-      $.ajax({
-          url: "http://127.0.0.1:5000/login",
-          type: "POST",
-          data: loginDetails
-      }).then(res => {
+    $.ajax({
+      url: "http://127.0.0.1:5000/login",
+      type: "POST",
+      data: loginDetails,
+    })
+      .then((res) => {
         this.props.updateUserData(res);
-      }).catch(err => {
-        console.log(err);
       })
-  }
+      .catch((err) => {
+        console.log(err);
+        alert("Invalied login credentials");
+      });
+  };
 
   render() {
     return (
       <div className="container-fluid pt-5">
         <div className="container p-5">
           <div className="shadow bg-light">
-          <div className="p-4">
-                    <h4 className="text-center">Welcome to Demo_School Quiz App</h4>
-                </div>
+            <div className="p-4">
+              <h4 className="text-center">Welcome to Demo_School Quiz App</h4>
+            </div>
             <div className="row">
               <div className="col-md-5 col-sm-12 justify-content-center align-self-center">
                 <div className="p-4">
@@ -85,6 +91,7 @@ class Login extends React.Component {
                           type="email"
                           className="input"
                           id="userEmailAddress"
+                          ref={(e) => (this.userEmailAddress = e)}
                           required
                         />
                         <div className="line-box">
@@ -99,6 +106,7 @@ class Login extends React.Component {
                           type="password"
                           className="input"
                           id="userPassword"
+                          ref={(e) => (this.userPassword = e)}
                           required
                         />
                         <div className="line-box">
@@ -111,7 +119,7 @@ class Login extends React.Component {
                         type="submit"
                         id="login"
                         className="btn btn-success"
-                        onClick = {this.handleLogin}
+                        onClick={this.handleLogin}
                       >
                         Login
                       </button>
@@ -120,7 +128,7 @@ class Login extends React.Component {
                 </div>
               </div>
               <div className="col-md-1 col-sm-12 justify-content-center align-self-center">
-              <h4 className="text-center">OR</h4>
+                <h4 className="text-center">OR</h4>
               </div>
               <div className="col-md-6 col-sm-12 justify-content-center align-self-center">
                 <div className="p-4">
@@ -133,6 +141,7 @@ class Login extends React.Component {
                           type="text"
                           className="input"
                           id="newUserName"
+                          ref={(e) => (this.newUserName = e)}
                           required
                         />
                         <div className="line-box">
@@ -147,6 +156,7 @@ class Login extends React.Component {
                           type="email"
                           className="input"
                           id="newUserEmailAddress"
+                          ref={(e) => (this.newUserEmailAddress = e)}
                           required
                         />
                         <div className="line-box">
@@ -161,6 +171,7 @@ class Login extends React.Component {
                           type="password"
                           className="input"
                           id="newUserPassword"
+                          ref={(e) => (this.newUserPassword = e)}
                           required
                         />
                         <div className="line-box">
