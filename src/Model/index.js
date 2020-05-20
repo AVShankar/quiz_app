@@ -68,7 +68,10 @@ app.post("/login", (req, res) => {
         });
       }
     });
-  });
+  }).catch( err => {
+    console.log(err)
+    console.log('Something went wrong!')
+  })
 });
 
 app.post("/addQuiz", (req, res) => {
