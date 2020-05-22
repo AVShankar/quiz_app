@@ -128,7 +128,7 @@ class QuestionComp extends React.Component {
                     className="btn btn-primary"
                     value="Next"
                     onClick={this.nextQuest}
-                    // disabled={!disableOptions}
+                    disabled={!disableOptions}
                   />
                 )}
               </div>
