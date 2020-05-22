@@ -34,9 +34,10 @@ class UserHome extends React.Component {
           <p className="text-muted">School: {localStorage.getItem("school")}</p>
         </div>
         <h5>Active Quiz: </h5>
-        <div className="d-flex justify-content-around p-2">
+        <div className="row p-2">
         {activeQuiz.length !== 0 ? activeQuiz.map((i) => {
             return (
+              <div className="col-4 p-2">
               <div key={i._id} className="card border-dark mb-3 text-center">
                 <div className="card-body text-dark">
                   <h5 className="card-title">{i.category}</h5>
@@ -51,6 +52,7 @@ class UserHome extends React.Component {
                     id={i._id}
                   />
                 </div>
+              </div>
               </div>
             );
           }) : <h6>No active quiz found</h6>}
