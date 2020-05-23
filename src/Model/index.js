@@ -10,7 +10,7 @@ mongoose.Promise = global.Promise;
 
 const app = express();
 const mongoDB =
-  "";
+"";
 
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
@@ -58,14 +58,16 @@ app.post("/signup", (req, res) => {
 app.post("/login", (req, res) => {
   let loginDetails = req.body;
   User.findOne({ email: loginDetails.email }).then((data) => {
+    console.log(data)
+    if(data === null){
+      return res.status(406).send("You haven't registered yet, please register as new user")
+    }
     bcrypt.compare(loginDetails.password, data.password, (err, result) => {
       if (result) {
         res.json(data);
       } else {
         console.log("Invalid credentials");
-        res.status(400).json({
-          message: "Invalid credientials",
-        });
+        res.status(400).send("Invalid login credientials")
       }
     });
   }).catch( err => {

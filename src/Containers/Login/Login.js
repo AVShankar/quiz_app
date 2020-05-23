@@ -66,8 +66,7 @@ class Login extends React.Component {
         this.props.updateUserData(res);
       })
       .catch((err) => {
-        console.log(err);
-        alert("Invalied login credentials");
+        alert(err.responseText);
       });
   };
 
