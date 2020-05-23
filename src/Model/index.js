@@ -58,7 +58,6 @@ app.post("/signup", (req, res) => {
 app.post("/login", (req, res) => {
   let loginDetails = req.body;
   User.findOne({ email: loginDetails.email }).then((data) => {
-    console.log(data)
     if(data === null){
       return res.status(406).send("You haven't registered yet, please register as new user")
     }
