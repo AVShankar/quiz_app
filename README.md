@@ -6,23 +6,23 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 App Login page: 
 
-![Image of Yaktocat](https://github.com/AVShankar/quiz_app/blob/master/Screenshot/Homepage.png)
+![Image of Yaktocat](https://github.com/AVShankar/quiz_app/blob/master/Screenshots/Homepage.png)
 
 When logged in as Admin, new quiz can be added and can modify the existing active quizzes.
 
-![Image of Yaktocat](https://github.com/AVShankar/quiz_app/blob/master/Screenshot/Admin_dashboard.png)
+![Image of Yaktocat](https://github.com/AVShankar/quiz_app/blob/master/Screenshots/Admin_dashboard.png)
 
 Add quiz option: 
 
-![Image of Yaktocat](https://github.com/AVShankar/quiz_app/blob/master/Screenshot/Add_quiz.png)
+![Image of Yaktocat](https://github.com/AVShankar/quiz_app/blob/master/Screenshots/Add_quiz.png)
 
 Student / User login home will be like: 
 
-![Image of Yaktocat](https://github.com/AVShankar/quiz_app/blob/master/Screenshot/User_home.png)
+![Image of Yaktocat](https://github.com/AVShankar/quiz_app/blob/master/Screenshots/User_home.png)
 
 Once they start a quiz, quetions will be rendered one by one:
 
-![Image of Yaktocat](https://github.com/AVShankar/quiz_app/blob/master/Screenshot/Quiz_page.png)
+![Image of Yaktocat](https://github.com/AVShankar/quiz_app/blob/master/Screenshots/Quiz_page.png)
 
 ### `npm start`
 
