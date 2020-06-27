@@ -1,6 +1,6 @@
 ## Quiz App ⁉
 
-A simple quiz app build using `React` with `MongoDB` and `NodeJs`
+A simple quiz app built using `React` with `MongoDB` and `NodeJs`
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -16,7 +16,7 @@ Add quiz option:
 
 ![Image of Yaktocat](https://github.com/AVShankar/quiz_app/blob/master/Screenshots/Add_quiz.png)
 
-Student / User login home will be like: 
+Student / User homepage will be like: 
 
 ![Image of Yaktocat](https://github.com/AVShankar/quiz_app/blob/master/Screenshots/User_home.png)
 
