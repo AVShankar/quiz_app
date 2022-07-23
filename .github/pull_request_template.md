@@ -8,6 +8,6 @@
 - 
 
 # Tasks
-- [] Is unit tests added
-- [] Documentation
+- [ ] Is unit tests added
+- [ ] Documentation
 
