@@ -11,7 +11,7 @@
     "bootstrap": "^4.4.1",
     "cors": "^2.8.5",
     "jquery": "^3.5.1",
-    "mongoose": "^5.9.12",
+    "mongoose": "^5.13.15",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-responsive-modal": "^5.0.2",
